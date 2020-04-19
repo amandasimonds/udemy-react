@@ -1,0 +1,32 @@
+.red {
+    color: red;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  /* Using App as a class selector, we say any button with __ class inside App class will have this style  */
+  .Cockpit button{
+    background-color: green;
+        color: white;
+        font: inherit;
+        border: 7px solid yellow;
+        padding: 8px;
+        border-radius: 10px;
+        cursor: pointer;
+  }
+  
+  .Cockpit button:hover{
+          background-color:lightgreen;
+          color: black
+  }
+  
+  .Cockpit button.Red {
+    background-color: red;
+  }
+  
+  .Cockpit button.Red:hover{
+    /* only in effect if there is a .Button class */
+    background-color: salmon;
+  }

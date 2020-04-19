@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+
 import classes from './App.css';
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
+
 // import styled from "styled-components";
-import Person from '../components/Persons/Person/Person';
-import Persons from "../components/Persons/Persons"
 // import Radium, { StyleRoot } from "radium"
 
 // const StyledButton = styled.button`
@@ -66,42 +68,22 @@ deletePersonHandler = (personIndex) => {
   render() {
 
     let persons = null;
-    let btnClass = [classes.Button];
 
     if(this.state.showPersons) {
-      persons = (
-        <div>
+      persons =
           <Persons 
             persons= {this.state.persons}
-          clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler} />
-          </div>
-          );
-
-      btnClass = [classes.Red]
+            clicked={this.deletePersonHandler}
+            changed={this.nameChangedHandler} />
     }
-
-//here we add assigned classes, based on the if statements. the classes are added as classnames to the elements returned
-const assignedClasses = [];
-if (this.state.persons.length <= 2) {
-  assignedClasses.push(classes.red);
-}
-
-if (this.state.persons.length <= 1) {
-  assignedClasses.push(classes.bold);
-}
 
     return (
    
       <div className={classes.App}>
-        <h1>Hello!!!</h1>
-        <p className={assignedClasses.join(" ")}>Welcome to my app where I practice react</p>
-        {/* <StyledButton */}
-        <button className={btnClass}
-            // alt={this.state.showPersons}
-            onClick={this.togglePersonsHandler}>Show People 
-          </button>
-        {/* </StyledButton> */}
+        <Cockpit 
+        clicked={this.togglePersonsHandler}
+        showPersons={this.state.showPersons}
+        persons={this.state.persons} />
         {persons}
       </div>
  
