@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 // import styled from "styled-components";
-import Person from './Person/Person';
-import ErrorBoundary from "./ErrorBoundary/ErrorBoundary";
+import Person from '../components/Persons/Person/Person';
+import Persons from "../components/Persons/Persons"
 // import Radium, { StyleRoot } from "radium"
 
 // const StyledButton = styled.button`
@@ -64,19 +64,6 @@ deletePersonHandler = (personIndex) => {
   }
 
   render() {
-    // const style = {
-    //   backgroundColor: "green",
-    //   color: "white",
-    //   font: "inherit",
-    //   border: "1px solid blue",
-    //   padding: "8px",
-    //   borderRadius: "10px",
-    //   cursor: "pointer",
-    //   ":hover": {
-    //     backgroundColor: "lightgreen",
-    //     color: "black"
-    //   }
-    // };
 
     let persons = null;
     let btnClass = [classes.Button];
@@ -84,42 +71,13 @@ deletePersonHandler = (personIndex) => {
     if(this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            // {/*makes a new array of JSX elements*/}
-            return <ErrorBoundary key={person.id} ><Person 
-            click={() => this.deletePersonHandler(index)}
-            name={person.name}
-            age={person.age} 
-            key={person.id} 
-            changed={(event) => this.nameChangedHandler(event, person.id)}/>
-            </ErrorBoundary>
-          })}
+          <Persons 
+            persons= {this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler} />
+          </div>
+          );
 
-        {/* <Person 
-          name={this.state.persons[0].name} 
-          age = "28"/>
-        <Person 
-          name={this.state.persons[1].name} 
-          age="32"
-          //bind syntax is better-------v
-          click={this.switchNameHandler.bind(this, "Max!")}
-          changed={this.nameChangedHandler}>My Hobbies: Racing</Person>
-        <Person 
-          name={this.state.persons[2].name} 
-          age="27" /> */}
-      </div>
-      );
-
-      // style.backgroundColor = "red";
-      // style[":hover"] = {
-      //   backgroundColor: "lightred",
-      //   color: "black"
-      // }
-
-      // takes red classes and pushes them to an array // (then you need the join method with a space to add classes to elements)
-      // btnClass.push(classes.Red);
-      
-      // if state showPersons = true, add the red btn class!
       btnClass = [classes.Red]
     }
 
