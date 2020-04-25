@@ -21,7 +21,7 @@ if (props.persons.length <= 1) {
 
     return(
         <div className = {classes.Cockpit}>
-            <h1>Hello!!!</h1>
+            <h1>{props.title}</h1>
         <p className={assignedClasses.join(" ")}>Welcome to my app where I practice react</p>
         {/* <StyledButton */}
         <button className={btnClass}

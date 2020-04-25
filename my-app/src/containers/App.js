@@ -23,6 +23,13 @@ import Cockpit from "../components/Cockpit/Cockpit";
 // `;
 
 class App extends Component {
+  constructor(props) {
+    //make sure intializes correctly with super
+    super(props);
+    console.log("[App.js] constructor")
+    //can initialize state here with this.state=
+  }
+
   state = {
     persons: [
       {id: "fdsafd", name: "Max", age: 28},
@@ -30,6 +37,16 @@ class App extends Component {
       {id: "dsar34w", name: "Amanda", age: 27}
     ],
     showPersons: false
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps, ", props)
+    //return updated state
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("[App.js] componentDidMount")
   }
 
 deletePersonHandler = (personIndex) => {
@@ -66,7 +83,7 @@ deletePersonHandler = (personIndex) => {
   }
 
   render() {
-
+    console.log("[App.js] render")
     let persons = null;
 
     if(this.state.showPersons) {
@@ -81,6 +98,7 @@ deletePersonHandler = (personIndex) => {
    
       <div className={classes.App}>
         <Cockpit 
+        title={this.props.appTitle}
         clicked={this.togglePersonsHandler}
         showPersons={this.state.showPersons}
         persons={this.state.persons} />
