@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react"
-import Person from "./Person/Person"
+import React, { PureComponent } from "react";
+import Person from "./Person/Person";
 
 class Persons extends PureComponent {
   //we don't have an initial state,s o we don't need this for now.
@@ -42,12 +42,14 @@ class Persons extends PureComponent {
 
         return this.props.persons.map((person, index) => {
         // {/*makes a new array of JSX elements*/}
-        return (<Person 
+        return (
+        <Person 
         click={() => this.props.clicked(index)}
         name={person.name}
         age={person.age} 
         key={person.id} 
-        changed={(event) => this.props.changed(event, person.id)}/>
+        changed={(event) => this.props.changed(event, person.id)}
+        />
         )
       });
     }

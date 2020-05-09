@@ -1,17 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./Cockpit.css"
+import AuthContext from "../../context/auth-context"
 
 const Cockpit = (props) => {
+
+  const toggleBtnRef = useRef(null);
 
   useEffect(() => {
     console.log("[Cockpit.js] useEffect")
     //can send http request
-    const timer = setTimeout(() => {
-      alert("saved data");
-    }, 1000);
+    // const timer = setTimeout(() => {
+    //   alert("saved data");
+    // }, 1000);
+    toggleBtnRef.current.click()
     //this runs BEFORE the main useEffect, but AFTER the first render cycle
     return () => {
-      clearTimeout(timer)
       console.log("[Cockpit.js] cleanup work in useEffect")
     }
     //add second argument to tell react when to use effect
@@ -45,12 +48,20 @@ const Cockpit = (props) => {
     <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
       <p className={assignedClasses.join(" ")}>Welcome to my app where I practice react</p>
-      {/* <StyledButton */}
-      <button className={btnClass}
+
+      <button 
+        ref={toggleBtnRef} 
+        className={btnClass}
         // alt={this.state.showPersons}
         onClick={props.clicked}>Show People
-          </button>
-      {/* </StyledButton> */}
+      </button>
+      <AuthContext.Consumer>
+        {/* return JSX in the function using context */}
+        {(context) =>
+        <button onClick={context.login}>Log in
+        </button>}
+      </AuthContext.Consumer>
+
     </div>
     );
 }
